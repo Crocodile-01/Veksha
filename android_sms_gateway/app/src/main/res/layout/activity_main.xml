@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="VEKSHA SMS Gateway" android:textSize="22sp" android:textStyle="bold"
+            android:textColor="#1565C0" android:gravity="center" android:paddingBottom="4dp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="IoT Emergency Health Monitoring" android:textSize="13sp"
+            android:textColor="#757575" android:gravity="center" android:paddingBottom="16dp" />
+
+        <!-- Status Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" app:cardElevation="2dp" app:cardCornerRadius="8dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="12dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="Gateway Status" android:textStyle="bold" android:textSize="14sp" android:paddingBottom="8dp" />
+                <TextView android:id="@+id/tvRegistrationStatus" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="Checking..." android:textSize="13sp" />
+                <TextView android:id="@+id/tvFcmToken" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="FCM: loading..."
+                    android:textSize="12sp" android:textColor="#757575" android:paddingTop="4dp" />
+                <TextView android:id="@+id/tvPermissionStatus" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="Permissions: checking..."
+                    android:textSize="12sp" android:paddingTop="4dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <Button android:id="@+id/btnRequestPermissions" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Grant Required Permissions"
+            android:backgroundTint="#F57F17" android:layout_marginBottom="12dp" android:visibility="gone" />
+
+        <!-- Settings Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" app:cardElevation="2dp" app:cardCornerRadius="8dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="12dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="Configuration" android:textStyle="bold" android:textSize="14sp" android:paddingBottom="8dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="Backend URL (e.g. http://192.168.1.100:8000)" android:layout_marginBottom="8dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etBackendUrl" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:inputType="textUri" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="Gateway API Key" android:layout_marginBottom="8dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etApiKey" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="Emergency Contacts (comma-separated)" android:layout_marginBottom="8dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etContacts" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:inputType="phone" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical" android:paddingBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Auto-send SMS on alert" android:textSize="14sp" />
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchAutoSms" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <Button android:id="@+id/btnSaveSettings" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="Save Settings" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Gateway Control Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" app:cardElevation="2dp" app:cardCornerRadius="8dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="12dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="Gateway Control" android:textStyle="bold" android:textSize="14sp" android:paddingBottom="8dp" />
+                <ProgressBar android:id="@+id/progressBar" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_gravity="center"
+                    android:visibility="gone" android:layout_marginBottom="8dp" />
+                <Button android:id="@+id/btnRegister" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="Register as SMS Gateway"
+                    android:backgroundTint="#1565C0" android:layout_marginBottom="8dp" />
+                <Button android:id="@+id/btnUnregister" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="Unregister Gateway"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_marginBottom="8dp" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <Button android:id="@+id/btnStartService" android:layout_width="0dp"
+                        android:layout_weight="1" android:layout_height="wrap_content"
+                        android:text="Start Service" android:backgroundTint="#2E7D32" android:layout_marginEnd="4dp" />
+                    <Button android:id="@+id/btnStopService" android:layout_width="0dp"
+                        android:layout_weight="1" android:layout_height="wrap_content"
+                        android:text="Stop Service" android:backgroundTint="#C62828" android:layout_marginStart="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <Button android:id="@+id/btnBatteryOptimization" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Disable Battery Optimization (Recommended)"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_marginBottom="12dp" />
+
+        <!-- SMS Log Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" app:cardElevation="2dp" app:cardCornerRadius="8dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="12dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="SMS Log" android:textStyle="bold" android:textSize="14sp" />
+                    <Button android:id="@+id/btnClearLog" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Clear"
+                        style="@style/Widget.MaterialComponents.Button.TextButton" />
+                </LinearLayout>
+                <TextView android:id="@+id/tvSmsLog" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="No SMS sent yet"
+                    android:textSize="11sp" android:fontFamily="monospace" android:paddingTop="4dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</ScrollView>
+

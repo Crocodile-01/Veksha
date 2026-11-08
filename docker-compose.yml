@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  veksha-backend:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    container_name: veksha-backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - server/.env
+    restart: unless-stopped
+    volumes:
+      - ./secrets:/app/secrets:ro
+

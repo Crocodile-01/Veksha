@@ -1,0 +1,53 @@
+# =============================================================================
+# VEKSHA - .gitignore
+# =============================================================================
+
+# ---- Firebase / Google credentials (NEVER commit) ---------------------------
+secrets/
+*.json
+!package.json
+!package-lock.json
+
+# ---- Python virtual environments -------------------------------------------
+server/venv/
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# ---- Environment files (contain secrets) ------------------------------------
+.env
+.env.*
+!.env.example
+
+# ---- Pytest cache -----------------------------------------------------------
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ---- OS / Editor artifacts --------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ---- Android Gradle / SDK / Build artifacts ---------------------------------
+.gradle/
+**/.gradle/
+build/
+**/build/
+local.properties
+**/local.properties
+*.apk
+*.aab
+*.keystore
+*.jks

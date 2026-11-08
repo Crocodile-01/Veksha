@@ -1,0 +1,9 @@
+fastapi>=0.100.0,<1.0.0
+uvicorn[standard]>=0.22.0,<1.0.0
+pydantic>=2.0.0,<3.0.0
+pytest>=7.0.0
+httpx>=0.24.0
+# Firebase Admin SDK — install after placing credentials in secrets/
+firebase-admin>=6.0.0,<7.0.0
+# Loads .env file at startup (optional — falls back to shell env vars)
+python-dotenv>=1.0.0,<2.0.0
